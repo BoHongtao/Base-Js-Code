@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>read</title>
+    <script src="public.js"></script>
+    <script>
+        window.onload = function () {
+           $('btn').onclick = function () {
+
+               var xhr = new create();
+
+               xhr.onreadystatechange = function () {
+                   if(xhr.status == 200 && xhr.readyState == 4){
+                       var xml = xhr.responseXML.getElementsByTagName('product');
+                        var str = "<hr>";
+                       for(var i = 0 ; i < xml.length ;++i){
+                           var pro_id = xml[i].getElementsByTagName('pro_id')[0].childNodes[0].nodeValue;
+                           var pro_name = xml[i].getElementsByTagName('pro_name')[0].childNodes[0].nodeValue;
+                           var pro_price = xml[i].getElementsByTagName('pro_price')[0].childNodes[0].nodeValue;
+                           var pro_chandi = xml[i].getElementsByTagName('pro_chandi')[0].childNodes[0].nodeValue;
+                            str+=pro_id+'--'+pro_name+'--'+pro_price+'--'+pro_chandi+"<hr>";
+                       }
+                       $('res').innerHTML = str;
+                   }
+               }
+
+               xhr.open('post','AjaxreadXml.php');
+               var date = '';
+               xhr.send(date);
+           }
+
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="read">
+<span id="res" value=""></span>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性选择器</title>
+
+    <script src="jquery.js"></script>
+    <script>
+            window.onload = function () {
+                document.getElementById('btn').onclick = function () {
+                    //获取color属性的元素
+                   // $('font[color]').html('颜色');
+                    //获取size=5的
+                    //$('font[size]').html('size');
+                    //$('font[color^="#f"]').html('f开头的');
+                    //同时有54他6他color和size属性的
+                    $('font[color][size]').html('color&size');
+                }
+            }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="属性">
+<hr>
+<font size="5">font1</font><hr>
+<font>font2</font><hr>
+<font color="#f00">font3</font><hr>
+<font size="5" color="red">font4</font><hr>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+           var data = {
+               c_parent_id:0,
+            _:new Date().getTime()
+           };
+           $.get('menu.php',data,function (msg) {
+                $(msg).each(function (i,item) {
+                    var id = item.id;
+                    var name = item.c_name;
+                    var op = new Option(name,id);
+                    $('#c1')[0].options.add(op);
+                });
+           },'json');
+
+            //获取c1对象并绑定change事件
+            $('#c1').bind('change',function(){
+                var value = $(this).val();
+                //发送Ajax请求
+                var data = {
+                    c_parent_id:value,
+                    _:new Date().getTime()
+                };
+            //清空c2下拉数据
+            //$('#c2')[0].length = 0;
+            $.get('menu.php',data,function(msg){
+                $(msg).each(function(i,item){
+                    var id = item.id;
+                    var name = item.c_name;
+                    //生成op对象
+                    var op = new Option(name,id);
+                    $('#c2')[0].options.add(op);
+                    });
+                },'json');
+
+        });
+     });
+    </script>
+</head>
+<body>
+
+<select id="c1">
+    <option value="0">请选择</option>
+</select>
+<select id="c2"></select>
+</body>
+</html>

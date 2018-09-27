@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function(){
+            $('img').hover(function() {
+                    $('#result').html('鼠标悬浮');
+                }, function() {
+                    $('#result').html('鼠标离开');
+                })
+        });
+    </script>
+</head>
+<body>
+<img src='image/1.jpg' />
+<hr />
+<div id='result'></div>
+
+</body>
+</html>

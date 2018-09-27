@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .error{color: red}
+        .waring{color: orange}
+        .success{color: green}
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+                //input失去焦点时
+                $('#register :input').blur(function () {
+                        //判断用户名
+                        if($(this).is('.loginName')){
+                            //获取用户名及span
+                            var username = $(this).val();
+                            var userspan = $(this).next('span');
+                            //去除上一次的格式
+                            userspan.removeClass();
+                            //匹配非单词字符
+                            var reg = /\W+/g;
+                            //合法性验证
+                            if(username ==''){
+                                userspan.addClass('waring').text('账号不能为空');
+                            }else if(username.length > 12 || username.length < 6){
+                                userspan.addClass('waring').text('请输入6-12位字母数字下划线');
+                            }else if(reg.test(username)){
+                                userspan.addClass('error').text('含有特殊字符');
+                            }else{
+                                //提交服务器检测ajax  {username:username}
+//                                $.post('username.php',{username:username},function (msg) {
+//                                    if(msg){
+//                                        userspan.addClass('error').text('用户名已存在');
+//                                    }else{
+//                                        userspan.addClass('success').text('合法');
+//                                    }
+//                                });
+                                $.ajax({
+                                    url:'username.php',
+                                    type:'post',
+                                    async:false,
+                                    data:{'username':username},
+                                    success:function (msg) {
+                                        if(msg){
+                                        userspan.addClass('error').text('用户名已存在');
+                                    }else{
+                                        userspan.addClass('success').text('合法');
+                                    }
+                                    }
+                                });
+                            }
+                        }
+                        //判断密码
+                        if($(this).is('.password')){
+                            var password = $(this).val();
+                            var pwdspan = $(this).next('span');
+
+                            pwdspan.removeClass();
+
+                            var reg = /\W+/g;
+
+                            if(password == ''){
+                                pwdspan.addClass('waring').text('密码不能为空');
+                            }else if(password.length>12 ||password.length < 6){
+                                pwdspan.addClass('waring').text('长度6-12');
+                            }else if(reg.test(password)){
+                                pwdspan.addClass('error').text('含有特殊字符');
+                            }else{
+                                //判断密码等级
+                                var level = 0 ;
+                                //含有数字等级加一
+                                if(/[0-9]+/g.test(password)) level++;
+                                //有小写字母等级加一
+                                if(/[a-z]+/g.test(password)) level++;
+                                //含有大写字母等级加一
+                                if(/[A-Z]+/g.test(password)) level++;
+                                if(/_+/g.test(password)) level++;
+                                pwdspan.addClass('success');
+                                if(level == 1) pwdspan.text('危险密码');
+                                if(level == 2) pwdspan.text('中级密码');
+                                if(level >= 3) pwdspan.text('高级密码');
+                            }
+                        }
+
+                        //确定密码
+                        if($(this).is('.passwordAgain')){
+                            //获取上一个密码框
+                            var password = $('.password').val();
+                            var passwordagain = $(this).val();
+                            var pwdagainspan = $(this).next('span');
+
+                            pwdagainspan.removeClass();
+
+                            if(passwordagain == ''){
+                                pwdagainspan.addClass('waring').text('密码不能为空');
+                            }else if(passwordagain.length > 12 || passwordagain < 6){
+                                pwdagainspan.addClass('waring').text('长度不对');
+                            }else if(passwordagain!=password){
+                                pwdagainspan.addClass('error').text('密码不一致');
+                            }else{
+                                pwdagainspan.addClass('success').text('密码合法');
+                            }
+                        }
+                }).focus(function () {
+                $(this).triggerHandler('blur');
+                 }).keyup(function () {
+                    $(this).triggerHandler('blur');//执行哪个事件，阻止默认行为，阻止冒泡
+                });
+
+            //判断提交按钮
+            $('#register :submit').click(function () {
+                $('#register :input').trigger('blur');//执行哪个事件
+                var numError = $('.error,.waring').length;
+                if(!numError){
+                    //serialize()通过序列化表单值，创建 URL 编码文本字符串
+                    $.post('register.php',$('#register').serialize(),function (msg) {
+                        alert(msg);
+                    });
+                }
+                return false;
+            });
+
+            //重置按钮
+            $('#register :reset').click(function () {
+                $('#register span').removeClass().text('');
+            })
+        });
+    </script>
+</head>
+<body>
+<form action="register.php" method="post" id="register">
+    账号：<input type="text" name="loginName" class="loginName" placeholder="请输入账号">
+         <span></span>
+    <hr/>
+    密码：<input type="password" name="password" class="password" placeholder="请输入密码">
+         <span></span>
+    <hr/>
+    确认：<input type="password" name="passwordAgain" class="passwordAgain" placeholder="请再次输入密码">
+         <span></span>
+    <hr/>
+    <button type="submit">注册</button>
+    <button type="reset">重置</button>
+</form>
+
+</body>
+</html>

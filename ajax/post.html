@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="public.js"></script>
+    <script>
+        window.onload = function () {
+            $('btn').onclick = function () {
+                var xhr = create();
+                xhr.onreadystatechange = function () {
+                        if(xhr.readyState == 4 && xhr.status == 200){
+                            alert(xhr.responseText);
+                        }
+                }
+
+                xhr.open('post','post.php');
+                xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                var username = $('username').value;
+                xhr.send('username='+username);
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="text" id="username">
+<input type="button" id="btn" value="检测">
+</body>
+</html>

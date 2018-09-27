@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name) {
+        this.name = name;
+        Person.count++;
+    }
+    //静态属性count
+    Person.count = 0;
+    //静态方法
+    Person.getCount = function () {
+        document.write('调用静态方法count is：'+Person.count);
+    }
+    var person1 = new Person('张三');
+    var person2 = new Person('李四');
+    document.write("静态属性："+Person.count+"<br>");
+    //调用静态方法
+    Person.getCount();
+</script>
+
+</body>
+</html>

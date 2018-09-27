@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById('btnok').onclick = function () {
+//                $('#div1 div').html('后代');
+//                $('#div1  > div').html('子元素');
+//                $('#div1 + div').html('紧邻的');
+                $('#div1 ~ div').html('紧邻所有兄弟');
+            }
+        }
+    </script>
+</head>
+<body>
+<input type='button' id='btnok' value='获取' />
+<hr />
+<div id='div1'>
+    <div id='div4'>
+        <div id='div5'>div5</div>
+    </div>
+</div>
+<div id='div2'>div2</div>
+<div id='div3'>div3</div>
+</body>
+</html>

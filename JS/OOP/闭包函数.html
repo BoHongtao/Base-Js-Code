@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function outFun() {
+        var i = 10;
+       function inFun() {
+           return i++;
+       }
+        return inFun;
+    }
+    //demo接受到的是函数inFun的首地址
+    var demo = outFun();
+    //执行demo（或者说是执行inFun）,这时候outFun的变量没有被回收
+    document.write( demo());
+    document.write( demo());
+</script>
+
+</body>
+</html>

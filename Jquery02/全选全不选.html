@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            width:800px;
+            border: 1px solid #69c;
+            border-collapse: collapse;
+        }
+        table tr th,table tr td{
+            border: 1px solid #69c;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        //插件
+        jQuery.fn.extend({
+                qx: function () {
+                    this.attr('checked', true);
+                },
+                qbx: function () {
+                    this.attr('checked', false);
+                },
+                fx: function () {
+                    for(var i = 0 ; i < this.length ;++i){
+                        this[i].checked  = !this[i].checked;
+                    }
+                }
+         }
+        );
+
+
+        $(function () {
+           //全选
+            $('#btnqx').bind('click',function () {
+               $(':checkbox').qx();
+            });
+            $('#btnqbx').bind('click',function () {
+               $(':checkbox').qbx();
+            });
+            $('#btnfx').bind('click',function () {
+                $(':checkbox').fx();
+            });
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>操作</th>
+            <th>编号</th>
+            <th>标题</th>
+            <th>发布时间</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='id[]' value='1'></td>
+            <td>1</td>
+            <td>剁椒鱼头</td>
+            <td>2017-7-1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='id[]' value='2'></td>
+            <td>1</td>
+            <td>剁椒鱼头</td>
+            <td>2017-7-1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='id[]' value='3'></td>
+            <td>1</td>
+            <td>剁椒鱼头</td>
+            <td>2017-7-1</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name='id[]' value='4'></td>
+            <td>1</td>
+            <td>剁椒鱼头</td>
+            <td>2017-7-1</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="button" id="btnqx" value="全选">
+                <input type="button" id="btnqbx" value="全不选">
+                <input type="button" id="btnfx" value="反选">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

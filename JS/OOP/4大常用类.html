@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+        日期类
+     */
+    var date = new Date();
+    document.write('年份:'+date.getFullYear()+"<hr/>");
+    document.write('月份:'+(date.getMonth()+1)+"<hr/>");
+    document.write('日期：'+date.getDate()+"<hr/>");
+    /*
+        字符串类
+     */
+    var str = "helloworld";
+    document.write('字符串的长度' + str.length+"<hr/>");
+    document.write('world出现的位置'+str.indexOf('world')+"<hr>");
+    document.write('字符串替换'+str.replace('world','php')+"<hr>");
+    /*
+        Math类
+        ceil floor min max pow random round sqrt
+    */
+    document.write('返回大于或者等于该数的最小整数'+Math.ceil(10.88)+"<hr>");
+    document.write('产生0-1之间的随机数'+Math.random()+"<hr>");
+    document.write('四舍五入'+Math.round(10.5)+"<hr>");
+    /*
+        array类
+     */
+    var arr = [1,2,3,5];
+    document.write('数组的长度'+arr.length+"<hr>");
+    document.write('追加');arr.push(4);
+    document.write('新数组'+arr+"<hr>");
+    var arr2 = [0,9,8,10];
+    document.write('合并');var newarr = arr.concat(arr2);
+    document.write('新数组'+newarr+"<hr>");
+    //sort只能排10以内的数组0~9
+    document.write('排序'+newarr.sort());
+    /*
+        自定义类
+     */
+    function LYL(name) {
+        this.name = name
+    }
+    var lyl1 = new LYL(12);
+    var lyl2 = new LYL(23);
+
+    console.log(lyl1);
+    console.log(lyl2);
+    //alert(typeof lyl);
+//    alert(lyl.constructor);
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body{
+     margin: 0;
+     padding: 0;
+}
+
+#bird{
+	width:60px;
+	height:60px;
+	line-height:60px;
+	text-align:center;
+	background:green;
+	position:absolute;
+	left:100px;
+  	top:200px;
+}
+#sky{
+     width: 800px;
+     height: 600px;
+     border: 1px solid #000;
+     background: url(image/sky.png);
+     overflow: hidden;
+     position: relative;
+}
+
+</style>
+</head>
+<body>
+<div id='sky'>
+	<div id='bird'>怪兽</div>
+</div>
+</body>
+</html>
+
+<script>
+
+	//获取控件
+	var bird = document.getElementById('bird');
+	var sky = document.getElementById('sky');
+	var skystep = 0;
+	var i = 0;
+	//保存怪兽的位置
+	var x=130,y=370;
+	var i = 0;
+//	//保存所有食物的位置坐标????
+	var arr = new Array();
+    //食物的随机产生位置
+    function getRandom(min,max) {
+        var random = Math.random()*(max-min)+min;
+        random = Math.floor(random);
+        return random;
+    }
+
+	//移动背景显示
+    var time1 = setInterval(function () {
+    	skystep = skystep - 5;
+    	sky.style.backgroundPositionX = skystep + "px";
+	}, 50);
+
+    //显示食物
+    var time2 = setInterval(function () {
+        //产生并显示食物
+        var img = document.createElement('img');
+
+		img.src = 'image/star.png';
+        //随机食物的宽度
+
+        var width = getRandom(15,65);
+        img.width = width;
+        //随机食物的位置
+        var food_x = getRandom(0,760);
+        var food_y = getRandom(0,560);
+
+        img.setAttribute('style','position:absolute;left:'+food_x+'px; top:'+food_y+'px');
+        var body = document.body;
+        body.appendChild(img);
+    },2000);
+
+
+	//吃掉食物
+    function removeImg(obj) {
+        document.body.removeChild(obj);
+    }
+
+	//键盘监听事件&&碰撞检测
+	document.onkeydown = function(event){
+		var code;
+		//判断浏览器类型
+		if(window.event){
+		    //IE内核
+			code = window.event.keyCode;
+		}else{
+		    //W3C内核
+			code = event.keyCode;
+		}
+		//右
+		if(code == 102 || code == 39){
+			var left = bird.offsetLeft;
+			var step = 5;
+			x=x+5;
+			if(x>770){
+				alert('死亡');
+			}else{
+				left = step + left ;
+				bird.style.left = left+'px';
+			}
+		}
+		//左
+		if(code == 100 || code == 37){
+			var left = bird.offsetLeft;
+			var step = 5;
+			x=x-5;
+			if(x<30){
+				alert('死亡');
+			}else{
+				left =left - step;
+				bird.style.left = left+'px';
+			}
+			
+		}
+		//上
+		if(code == 104 || code == 38){
+			var top = bird.offsetTop;
+			var step = 10;
+			y=y+5;
+			//alert(y);
+			if(y>470){
+				alert('死亡');
+			}else{
+				top = top - step ;
+				bird.style.top = top+'px';
+			}
+			
+		}
+		//下
+		if(code == 98 || code == 40){
+			var top = bird.offsetTop;
+			var step = 10;
+			y=y-5;
+			//alert(y);
+			if(y<200){
+				alert('死亡');
+			}else{
+				top = step + top ;
+				bird.style.top = top+'px';
+			}
+		}
+		//吃
+		if(code = 101){
+			//已知鸟的位置
+			
+		}
+		
+}
+
+</script>

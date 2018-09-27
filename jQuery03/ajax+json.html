@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            $('#btn').bind('click',function () {
+                $.ajax(
+                    {
+                        url:'ajax+json.php',
+                        type:'get',
+                        cache:false,
+                        dataType:'json',
+                        success:function (msg) {
+                            $(msg).each(function (i,item) {
+                                var name = item.a_name;
+                                var id = item.c_id;
+                                $('#res').append(id+'-'+name+'<hr>');
+                            });
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="出结果" id="btn">
+<div id="res" style="border: 1px solid red"></div>
+</body>
+</html>

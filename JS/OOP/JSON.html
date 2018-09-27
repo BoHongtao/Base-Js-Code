@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    var json = {name:"zhangsan",age:22};
+    var jsonStr = JSON.stringify(json);
+    document.write(typeof json);
+    document.write(jsonStr);
+
+    //转换成对象
+    jsonobj = JSON.parse(jsonStr);
+    console.log(jsonobj);
+
+</script>
+</body>
+</html>

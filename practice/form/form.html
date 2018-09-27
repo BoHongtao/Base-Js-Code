@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .error{color: red}
+        .waring{color: orange}
+        .success{color: green}
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+           $('#username').blur(function () {
+                var username = $(this).val();
+                var userspan = $(this).next('span');
+               userspan.removeClass();
+               var reg = /\W+/g;
+                if(username == ''){
+                    userspan.addClass('waring').text("不能为空");
+                }else if(reg.test(username)){
+                    userspan.addClass('waring').text("数字字母下划线");
+                }else{
+                    $.ajax({
+                        url:'username.php',
+                        type:'post',
+                        data:{'username':username},
+                        success:function (msg) {
+                            alert(msg);
+                        }
+                    });
+                }
+
+           });
+           $('#password').blur(function () {
+               var password = $(this).val();
+               var pwdspan = $(this).next('span');
+                if(password==''){
+                    pwdspan.addClass('waring').text('不能为空');
+                }else {
+                    //判断密码等级
+                    var level = 0 ;
+                    //含有数字等级加一
+                    if(/[0-9]+/g.test(password)) level++;
+                    //有小写字母等级加一
+                    if(/[a-z]+/g.test(password)) level++;
+                    //含有大写字母等级加一
+                    if(/[A-Z]+/g.test(password)) level++;
+                    if(/_+/g.test(password)) level++;
+                    pwdspan.addClass('success');
+                    if(level == 1) pwdspan.text('危险密码');
+                    if(level == 2) pwdspan.text('中级密码');
+                    if(level >= 3) pwdspan.text('高级密码');
+                }
+           });
+        });
+    </script>
+</head>
+<body>
+<form action="">
+    <input type="text" id="username">
+    <span id="userspan"></span>
+    <hr>
+    <input type="password" id="password">
+    <span id="pwdspan"></span>
+    <hr>
+    <input type="submit" value="确定">
+</form>
+</body>
+</html>

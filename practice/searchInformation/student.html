@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            $('#btn1').click(function () {
+               //获取学生姓名
+                var studentname = $('#studentname').val();
+                $.ajax(
+                    {
+                        url:'student.php',
+                        type:'post',
+                        data:'studentname='+studentname,
+                        dataType:'json',
+                        success:function (msg) {
+                            $(msg).each(function (i,item) {
+                                var name = item.a_name;
+                                var id = item.c_id;
+                                $('#res').append(id+'-'+name+'<hr>');
+                            });
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</head>
+<body>
+
+    姓名：<input type="text" id="studentname"><input type="submit" id="btn1">
+    <hr>
+    学号：<input type="text" id="studentno"><input type="submit" id="btn2">
+    <hr>
+    <div id="res"></div>
+</body>
+</html>

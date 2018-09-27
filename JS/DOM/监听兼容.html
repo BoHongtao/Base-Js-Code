@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ .div1{
+	width:200px;
+ 	height:200px;
+ 	background:red;
+ }
+ .div2{
+     width:200px;
+     height:200px;
+     background:green;
+ }
+</style>
+</head>
+<body>
+<div class='div1' id='div'>添加</div>
+<div class="div2" id="div2">删除</div>
+</body>
+</html>
+
+
+<script>
+//返回dom对象
+function DOM(id){
+    return document.getElementById(id);
+}
+//事件
+function f1() {
+    alert('hello');
+}
+
+//添加监听-----obj:绑定的dom对象，type：要绑定的事件类型，不带on；callback:事件处理程序
+function addEvent(obj,type,callback) {
+    //判断浏览器类型
+    if(obj.addEventListener){
+        //W3C
+        obj.addEventListener(type,callback);
+    }else{
+        //IE
+        obj.attachEvent('on'+type,callback);
+    }
+}
+
+
+//删除监听
+function removeEvent(obj,type,callback) {
+    if(obj.removeEventListener()){
+        //W3C
+        obj.removeEventListener(type,callback);
+    }else{
+        //IE
+        obj.detachEvent('on'+type,callback);
+    }
+}
+
+window.onload = function () {
+    addEvent(DOM('div'),'click',f1);
+    //删除监听
+    DOM('div2').onclick = function () {
+       removeEvent(DOM('div2'),'click',f1);
+    }
+}
+//window.onload = function(){
+//	DOM('div').onclick = function(){
+//		alert('hello');
+//	}
+    //W3C模式
+    /*
+	DOM('div').addEventListener('click',function(){
+		alert('hello');
+	});
+	DOM('div').addEventListener('click',function(){
+		alert('word');
+	});
+	//IE8以下模式
+    DOM('div').attachEvent('onclick',function () {
+        alert('hello');
+    });
+    DOM('div').attachEvent('onclick',function () {
+        alert('word');
+    });
+}
+*/
+</script>

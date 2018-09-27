@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="jquery.js"></script>
+<script>
+    $(function () {
+       $(':submit').bind('click',function (event) {
+           var username = $(':text').val();
+           var password = $(':password').val();
+           if(username == '' || password == ''){
+               alert('username or password is null');
+               event.preventDefault();
+           }
+       })
+    });
+</script>
+<body>
+<form action="">
+    username:<input type="text" id="username">
+    <hr>
+    password:<input type="password" id="password">
+    <hr>
+    <input type="submit">
+</form>
+</body>
+</html>

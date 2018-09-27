@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var map;
+    var snake;
+    var food;
+    var time;
+    //地图
+    function Map() {
+        this.width = 800;
+        this.height = 600;
+        this.color = '#dddddd';
+        this.position = 'absolute';
+        //共有的属性表示div对象
+        this._map = null;
+
+        this.show = function () {
+            this._map = document.createElement('div');
+            this._map.style.width = this.width + 'px';
+            this._map.style.height = this.height + 'px';
+            this._map.style.backgroundColor = this.color;
+            this._map.style.position = this.position;
+            document.getElementsByTagName('body')[0].appendChild(this._map);
+        }
+    }
+    //随机产生食物
+    function Food() {
+        this.width = 20;
+        this.height = 20;
+        this.color = 'green';
+        this.position = 'absolute';
+        this.x = 0;
+        this.y = 0;
+        //用于保存div食物对象
+        this._food = null;
+        this.show = function () {
+            if (this._food == null) {
+                this._food = document.createElement('div');
+                this._food.style.width = this.width + 'px';
+                this._food.style.height = this.height + 'px';
+                this._food.style.backgroundColor = this.color;
+                this._food.style.position = this.position;
+            }
+            //随机产生位置
+            this.x = Math.floor(Math.random() * 40);
+            this.y = Math.floor(Math.random() * 30);
+
+            this._food.style.left = this.x * 20 + 'px';
+            this._food.style.top = this.y * 20 + 'px';
+            //追加到地图
+            map._map.appendChild(this._food);
+        }
+    }
+    //蛇
+    function Snake() {
+        this.width = 20;
+        this.height = 20;
+        this.i = 0;
+        this.position = 'absolute';
+        this.body = [[3, 2, 'red', null], [2, 2, 'blue', null], [1, 2, 'blue', null]];
+        this.direct = 'right';
+        //show方法
+        this.show = function () {
+            for (var i = 0; i < this.body.length; ++i) {
+                if (this.body[i][3] == null) {
+                    //创建一个div对象
+                    this.body[i][3] = document.createElement('div');
+                    this.body[i][3].style.width = this.width + 'px';
+                    this.body[i][3].style.height = this.height + 'px';
+                    this.body[i][3].style.backgroundColor = this.body[i][2];
+                    this.body[i][3].style.position = this.position;
+                }
+                this.body[i][3].style.left = this.body[i][0] * 20 + 'px';
+                this.body[i][3].style.top = this.body[i][1] * 20 + 'px';
+                map._map.appendChild(this.body[i][3]);
+            }
+        }
+        //move方法
+        this.move = function () {
+            console.log(this.body);
+            //蛇头与食物重合
+            if (this.body[0][0] == food.x && this.body[0][1] == food.y) {
+                this.body.push([0, 0, 'blue', null]);
+
+                food.show();
+            }
+            if (this.body[0][0] > 38 || this.body[0][1] < 0) {
+                alert('撞墙了');
+                clearInterval(time);
+                return false;
+            }
+            //length of snake
+            var length = this.body.length;
+            for(var j = length-1 ; j > 0 ; --j) {
+                if (this.body[0][0] == this.body[j][0] && this.body[0][1] == this.body[j][1]) {
+                    clearInterval(time);
+                    alert('咬自己了');
+                }
+            }
+            //交换身子的位置
+            for (var i = length - 1; i > 0; --i) {
+                this.body[i][0] = this.body[i - 1][0];
+                this.body[i][1] = this.body[i - 1][1];
+            }
+
+            //运动方向
+            if (this.direct == 'right') {
+                this.body[0][0] += 1;
+            }
+            if (this.direct == 'left') {
+                this.body[0][0] -= 1;
+            }
+            if (this.direct == 'up') {
+                this.body[0][1] -= 1;
+            }
+            if (this.direct == 'down') {
+                this.body[0][1] += 1;
+            }
+            this.show();
+        }
+
+        //自动移动
+        this.moveauto = function () {
+            var length = this.body.length;
+            if (this.body[0][0] == food.x && this.body[0][1] == food.y) {
+                this.body.push([0, 0, 'blue', null]);
+                var input = document.getElementById('num');
+                var num = input.value;
+                input.value=++num;
+                food.show();
+            }
+            //change
+            for (var i = length - 1; i > 0; --i) {
+                this.body[i][0] = this.body[i - 1][0];
+                this.body[i][1] = this.body[i - 1][1];
+            }
+
+            if (this.body[0][0] < food.x) {
+                //right
+                this.body[0][0] += 1;
+            } else if (this.body[0][0] > food.x) {
+                //left
+                this.body[0][0] -= 1;
+            } else if (this.body[0][0] == food.x) {
+
+                if (this.body[0][1] > food.y) {
+                    //up
+                    this.body[0][1] -= 1;
+                } else if (this.body[0][1] < food.y) {
+                    //down
+                    this.body[0][1] += 1;
+                } else if (this.body[0][1] == food.y) {
+                    this.body.push([0, 0, 'blue', null]);
+                }
+            }
+
+            this.show();
+        }
+        //获取从键盘获取的值
+        this.setDirect = function (code) {
+            switch (code) {
+                case 37:
+                    this.direct = 'left';
+                    break;
+                case 38:
+                    this.direct = 'up';
+                    break;
+                case 39:
+                    this.direct = 'right';
+                    break;
+                case 40:
+                    this.direct = 'down';
+                    break;
+            }
+        }
+    }
+
+    window.onload = function () {
+        //生成map
+        map = new Map();
+        map.show();
+        //生成地图
+        food = new Food();
+        food.show();
+        //生成snake
+        snake1 = new Snake();
+        snake1.show();
+        i = 0;
+
+//         time = setInterval('snake.move()',200);
+//         //键盘监听事件
+//         document.onkeydown = function (event) {
+//         var code;
+//         if(window.event){
+//         code = window.event.keyCode;
+//         }else{
+//         code = event.keyCode;
+//         }
+//         snake.setDirect(code);
+//         }
+
+        //自动执行
+        time = setInterval('snake1.moveauto()', 10);
+    }
+</script>
+<div>积分：<input type="text" value="0" id="num"></div>
+</body>
+</html>

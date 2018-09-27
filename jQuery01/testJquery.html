@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            width: 200px;
+            height:200px;
+            background:#f00;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById('btn').onclick = function () {
+                $('#box').hide(100);
+                $('#div1').html('test');
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="隐藏">
+<hr>
+<div id="box"></div>
+<div id="div1">div</div>
+
+</body>
+</html>

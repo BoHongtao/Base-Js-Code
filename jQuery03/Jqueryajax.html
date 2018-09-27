@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+           $('#btn1').bind('click',function () {
+                $.ajax({
+                        url:'Jqueryajax.php',
+                        type:'get',
+                        cache:false,
+                        success:function (msg) {
+                            alert(msg);
+                        }
+                });
+           }) ;
+
+           $('#btn2').bind('click',function () {
+               var username = $('#username').val();
+                $.ajax({
+                    url:'Jqueryajax.php',
+                    type:'post',
+                    data:'username='+username,
+                    success:function (msg) {
+                        alert(msg);
+                    }
+                });
+           });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="GET" id="btn1">
+<hr>
+<input type="text" id="username">
+<input type="button" value="POST" id="btn2">
+
+</body>
+</html>

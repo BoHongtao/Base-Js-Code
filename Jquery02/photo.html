@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            //所有都模糊
+           $('img').fadeTo(1,0.2);
+           $('img').hover(function () {
+               //鼠标悬浮,不透明
+               $(this).fadeTo(1,1);
+           },function () {
+               //鼠标离开，半透明
+                $(this).fadeTo(1,0.2);
+           });
+        });
+    </script>
+</head>
+<body>
+<img src="image/1.jpg">
+<img src="image/2.jpg">
+<img src="image/3.jpg">
+<img src="image/4.jpg">
+<img src="image/5.jpg">
+</body>
+</html>

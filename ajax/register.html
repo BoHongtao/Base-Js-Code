@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        //创建Ajax
+        function getXmlHttpObject() {
+            var xmlHttpRequest;
+            //浏览器兼容
+            if(window.ActiveXObject){
+                //IE
+                xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            }else{
+                xmlHttpRequest = new XMLHttpRequest();
+            }
+            return xmlHttpRequest;
+        }
+        var myXmlHttpRequest = "";
+        function checkName() {
+            myXmlHttpRequest = getXmlHttpObject();
+            if(myXmlHttpRequest){
+               //通过myXmlHttpRequest发送请求到服务器的某个页面
+                /*
+                    第一个参数：提交的参数，get或者post
+                    第二个参数：php处理程序的地址
+                    第三个参数：true表示使用异步机制,false表示不使用异步机制
+                 */
+                //解决缓存问题，url加时间或者随机数；
+                //加上+"&time="+new Date()
+                var url = './register.php?username='+$("username").value+"&time="+new Date();
+                myXmlHttpRequest.open("get",url,true);
+                myXmlHttpRequest.onreadystatechange = chuli;
+                myXmlHttpRequest.send(null);
+            }else{
+                alert('失败');
+            }
+        }
+        function chuli() {
+//            alert("处理函数");
+            if(myXmlHttpRequest.readyState==4){
+//                window.alert("服务器返回了"+myXmlHttpRequest.responseText);
+                $('res').value = myXmlHttpRequest.responseText;
+            }
+        }
+
+        function $(id) {
+           return document.getElementById(id);
+        }
+    </script>
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+    username:<input type="text" name="username" id="username" onkeyup="checkName()">
+    <!--<input type="button" value="验证用户名" onclick="checkName()">-->
+    <input type="text" style="border-width: 0;color: red" id="res">
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="public.js"></script>
+    <script>
+        window.onload = function () {
+            $('btn').onclick = function () {
+                var xhr = new create();
+                xhr.onreadystatechange = function () {
+                        if(xhr.status == 200 && xhr.readyState ==4){
+                            //var json = eval('('+xhr.responseText+')');
+                            var json = eval(xhr.responseText);
+                            //alert(typeof json);
+                            for(var i in json){
+                                var pro_id = json[i].pro_id;
+                                var pro_name = json[i].pro_name;
+                                $('res').innerHTML+=pro_id+'--'+pro_name+'<hr>';
+                            }
+
+                        }
+                }
+                xhr.open('post','AjaxJson.php');
+                xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+                xhr.send(null);
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="获取json"><hr/>
+<div id="res"></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax框架的应用</title>
+    <script src="ajax.js"></script>
+    <script>
+        window.onload = function () {
+
+            ////////////////////get方法////////////////////////////////////
+
+            $('btn').onclick = function () {
+                $.get('FrameAjax.php','username=john',function (msg) {
+                    alert(msg);
+                });
+            }
+
+            ///////////////////post方法////////////////////////////////////
+
+
+            $('btnpost').onclick = function () {
+                var username = $('username').value;
+                var password = $('password').value;
+                var data = 'username='+username+'&'+'password='+password;
+                alert(data);
+                $.post('FrameAjax.php',data,function (msg) {
+                    alert(msg);
+                });
+            }
+
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="get">
+<hr/>
+username:<input type="text" id="username"><br/>
+password:<input type="password" id="password"><br/>
+<input type="button" id="btnpost" value="post">
+</body>
+</html>

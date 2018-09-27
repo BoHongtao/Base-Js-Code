@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="public.js"></script>
+    <script>
+        //获取父类别
+        function c1() {
+            var xhr = new create();
+            xhr.onreadystatechange = function () {
+                if(xhr.status == 200 && xhr.readyState==4){
+                    var json = eval('('+xhr.responseText+')');
+                }
+            }
+            xhr.open('post','Menu.php');
+            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+            var date = 'c_parent_id=0';
+            xhr.send(date);
+        }
+        window.onload = function () {
+            
+        }
+    </script>
+</head>
+<body>
+<select id="c1">
+    <option value="0">请选择</option>
+</select>
+
+<select id="c2">
+
+</select>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>可见性选择器</title>
+    <style type='text/css'>
+        #box {width:400px; height:200px; background:#f00; display:none;}
+    </style>
+    <script src='jquery.js'></script>
+    <script>
+        //定义页面载入事件
+        window.onload = function() {
+            document.getElementById('btnok').onclick = function() {
+                //1、获取可见的div元素
+                //$('div:visible').hide();
+                //2、获取隐藏的div元素
+                $('div:hidden').show();
+            }
+        };
+    </script>
+</head>
+<body>
+<input type='button' id='btnok' value='获取' />
+<hr />
+<div id='box'></div>
+</body>
+</html>

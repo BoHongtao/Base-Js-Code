@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<script src="public.js"></script>
+<script>
+        window.onload = function () {
+            $('username').onblur = function () {
+               // 1、创建Ajax
+                var xhr = create();
+               //2、设置回调函数
+                xhr.onreadystatechange = function () {
+                    //判断响应状态码
+                    if(xhr.readyState == 4 && xhr.status ==200){
+                       console.log(typeof (xhr.responseText));
+                        if(xhr.responseText==1){
+                            $('res').innerHTML = '<font color="red">合法</font>';
+                        }else{
+                            $('res').innerHTML = '<font color="red">已被注册</font>'
+                        }
+                    }
+                }
+                //3、初始化Ajax对象
+                var username = $('username').value;
+                var url = 'createAjax.php?username='+username;
+                xhr.open('get',url);
+                //4、发送Ajax请求
+                xhr.send(null);
+            }
+        }
+</script>
+</head>
+<body>
+<input type="username" id="username">
+
+<span id="res"></span>
+</body>
+</html>

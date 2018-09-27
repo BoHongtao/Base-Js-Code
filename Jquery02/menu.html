@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type='text/css'>
+        div,h2 {margin:0; padding:0 10px; font-size:12px;}
+        .menu {width:160px; height:30px; line-height:30px; background-color:#369; color:#FFF; font-size:14px; font-weight:bold;}
+        div {width:158px; line-height:30px; border:1px #369 solid; display:none;}
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+//            //第一个菜单显示
+            $('.menu:first + div').show();
+//            //menu添加点击事件
+            $('.menu').bind('click', function () {
+//                $('.menu + div').hide();
+//                var id = this.id;
+//                var str = '#'+id+'+div';  //$m1+div
+//                $(str).slideDown(1000);
+//            });
+                $('div').not($(this).next()).hide();
+                $(this).next().slideDown(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<h2 id='m1' class='menu'>系统记录</h2>
+<div>
+    充值记录<br />
+    短信记录<br />
+    操作记录
+</div>
+<h2 id='m2' class='menu'>渠道管理</h2>
+<div>
+    充值记录<br />
+    短信记录<br />
+    操作记录
+</div>
+<h2 id='m3' class='menu'>APP管理</h2>
+<div>
+    充值记录<br />
+    短信记录<br />
+    操作记录
+</div>
+<h2 id='m4' class='menu'>系统设置</h2>
+<div>
+    充值记录<br />
+    短信记录<br />
+    操作记录
+</div>
+</body>
+</html>

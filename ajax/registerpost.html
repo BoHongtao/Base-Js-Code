@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        //创建Ajax引擎
+        function getXmlHttpObject() {
+            var xmlHttpRequest;
+            //浏览器兼容
+            if(window.ActiveXObject){
+                //IE
+                xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            }else{
+                xmlHttpRequest = new XMLHttpRequest();
+            }
+            return xmlHttpRequest;
+        }
+        var myXmlHttpRequest = "";
+        function checkName() {
+            myXmlHttpRequest = new getXmlHttpObject();
+            if(myXmlHttpRequest){
+                //通过myXmlHttpRequest发送请求到服务器的某个页面
+                /*
+                 第一个参数：提交的参数，get或者post
+                 第二个参数：php处理程序的地址
+                 第三个参数：true表示使用异步机制,false表示不使用异步机制
+                 */
+                var url = "./registerpost.php";
+                var data = "username="+$('username').value;
+//                alert(data);
+                myXmlHttpRequest.open("post",url,true);
+                myXmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+                myXmlHttpRequest.onreadystatechange = chuli;
+                myXmlHttpRequest.send('username='+$('username').value);
+            }
+        }
+        function chuli() {
+//            alert("处理函数");
+            if(myXmlHttpRequest.readyState==4){
+//                window.alert("服务器返回了"+myXmlHttpRequest.responseText);
+                $('res').value = myXmlHttpRequest.responseText;
+            }
+        }
+
+        function $(id) {
+            return document.getElementById(id);
+        }
+    </script>
+    <title>Title</title>
+</head>
+<body>
+<form action="./registerpost.php" method="post">
+    username:<input type="text" name="username" id="username">
+    <input type="button" value="验证用户名" onclick="checkName()">
+    <input type="text" style="border-width: 0;color: red" id="res">
+
+</form>
+
+</body>
+</html>

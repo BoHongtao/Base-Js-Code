@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本效果</title>
+    <style>
+        #res{
+            width:400px;
+            height: 400px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script src="jquery.js"></script>
+
+    <script>
+            $(function () {
+                $('#show').bind('click',function () {
+                   $('#res').show(3000);
+                });
+                $('#hide').bind('click',function () {
+                    $('#res').hide(1000);
+                });
+                $('#toggle').bind('click',function () {
+                    $('#res').toggle(3000,function () {
+                        alert('动画结束');
+                    });
+                });
+                //上下滑动
+                $('#slideup').bind('click',function () {
+                    $('#res').slideUp();
+                });
+                $('#slidedown').bind('click',function () {
+                    $('#res').slideDown();
+                });
+                $('#slidetoggle').bind('click',function () {
+                    $('#res').slideToggle();
+                });
+
+                //淡入淡出
+                $('#fadein').bind('click',function () {
+                    $('#res').fadeIn(2000);
+                });
+                $('#fadeout').bind('click',function () {
+                    $('#res').fadeOut(2000);
+                });
+                $('#fadeto').bind('click',function () {
+                    $('#res').fadeTo(2000,0.2);
+                });
+                //自定义动画
+                $('#leftslide').bind('click',function () {
+                    $('#res').animate({
+                        right:+200
+                    },300);
+                });
+            });
+    </script>
+</head>
+<body>
+<input type="button" id="show" value="show">
+<input type="button" id="hide" value="hide">
+<input type="button" id="toggle" value="toggle">
+
+<input type="button" id="slidedown" value="slidedown">
+<input type="button" id="slideup" value="slideup">
+<input type="button" id="slidetoggle" value="slidetoggle">
+
+<input type="button" id="fadein" value="fadein">
+<input type="button" id="fadeout" value="fadeout">
+<input type="button" id="fadeto" value="fadeto">
+
+<input type="button" id="leftslide" value="向右滑动">
+
+
+<hr>
+<div id="res"></div>
+</body>
+</html>

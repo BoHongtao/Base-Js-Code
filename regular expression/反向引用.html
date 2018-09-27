@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str1 = 'tom@qq.com';
+    var reg1 = /\w+@\w+(\.\w{2,6})+/gi;
+    document.write(str1.match(reg1));
+
+
+    var str2 = '李艳兰坏蛋，李艳兰好人';
+    var reg2 = /李艳兰(?!坏蛋)/;
+    document.write(str2.match(reg2));
+
+    var str = '@@Hhkjh';
+    var reg = /\W+/g;
+    document.write(reg.test(str));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    var arr1 = [2,4,6,12,89,90,123,1,5];
+    function bubble(arr) {
+        var lenth = arr.length;
+        var temp, i, j;
+        for(i = lenth-1; i > 0; --i){
+            for(j = 0 ; j < i ; j ++){
+                if(arr[j]>arr[j+1]){
+                    temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+    document.write(bubble(arr1));
+    document.write("<hr>");
+
+    var arr2 = [2,4,6,12,89,90,123,1,5,8];
+    function select(arr) {
+        var lenth = arr.length;
+        var min, i, j,temp;
+        for(i = 0 ; i < lenth ;i++){
+            min = i;
+            for(j = i+1 ; j < lenth ;j++){
+                if(arr[j]<arr[min]) min = j;
+                    temp = arr[min];
+                    arr[min] = arr[i];
+                    arr[i] = temp;
+                document.write(arr+"---min = "+min+"<br>");
+            }
+            document.write('-----------------'+"<br>");
+        }
+        return arr;
+    }
+    document.write("结果是：<br>");
+    document.write(select(arr2));
+
+
+</script>
+</body>
+</html>

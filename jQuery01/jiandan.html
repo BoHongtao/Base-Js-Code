@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>简单选择器</title>
+    <script src='jquery.js'></script>
+    <script>
+        //定义页面载入事件
+        window.onload = function() {
+            //获取btnok按钮并绑定事件
+            document.getElementById('btnok').onclick = function() {
+                //1、获取第一个单元格的内容
+                //$('td:first').html('test');
+                //2、获取偶数行单元格的内容
+                //$('td:even').html('test');
+                //3、获取索引等于4的单元格信息
+                //$('td:eq(4)').html('test');
+                //4、获取索引大于4的所有单元格信息
+                //$('td:gt(4)').html('test');
+                //5、获取除索引为4的所有其他单元格信息
+                $("td:not(td:eq(4))").html('test');
+            }
+        }
+    </script>
+</head>
+<body>
+<input type='button' id='btnok' value='获取' />
+<hr />
+<table width='800' border='1'>
+    <tr>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+    </tr>
+</table>
+</body>
+</html>

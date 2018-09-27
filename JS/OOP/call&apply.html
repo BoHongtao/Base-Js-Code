@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Person(name,age) {
+        this.name = name;
+        this.age = age;
+    }
+    function speak() {
+        alert(this.name);
+        alert(this.age);
+    }
+
+    var p1 = new Person('小明',23);
+    speak.call(p1);
+</script>
+
+</body>
+</html>

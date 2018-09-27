@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IE</title>
+
+</head>
+<body>
+<input type="button" id="btnok" value="Ajax">
+</body>
+</html>
+
+<script>
+    function $(id) {
+        return document.getElementById(id);
+    }
+    window.onload = function () {
+        $('btnok').onclick = function () {
+            var xhr = new ActiveXObject("Microsoft.XMLLHTTP");
+            alert(xhr);
+        }
+    }
+
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function girl() {
+        //共有属性
+        this.name = '小兰';
+        //私有属性
+        var love = '小兰的布娃娃';
+    }
+    var lyl = new girl();
+    document.write(lyl.name);
+    //undefined:function执行完后var声明的被回收，可以使用闭包来解决
+    document.write(lyl.love);
+
+    document.write("<hr>");
+
+    function Boy() {
+        var love = 'girl';
+        function getlove() {
+            return love;
+        }
+        return getlove;
+    }
+
+    var boy = Boy();
+    document.write(boy());
+</script>
+
+</body>
+</html>
