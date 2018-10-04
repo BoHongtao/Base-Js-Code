@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr1 = [0,1,2,2,2,3,5,8,8,4,4,6];
+    var arr2 = [];
+    var len1 = arr1.length;
+    var len2 = arr2.length;
+    //i遍历取出arr1中的数
+    for(var i = 0 ; i < len1 ;++i){
+                    // 与arr2中的数比较
+                var flag = 0;
+                for(var j = 0 ; j< len2 ;++j){
+                        if(arr1[i] == arr2[j]){
+                            flag = i;
+                        }
+                }
+                if(flag == 0){
+                    arr2[len2] = arr1[i];
+                    len2++;
+                }
+        }
+        console.log(arr2);
+    for(var i = 0 ; i < arr1.length;i++){
+        arr2[arr1[i]] = true;
+    }
+    var result = [];
+    for(var key in arr2){
+        result.push(key);
+    }
+    console.log(result);
+
+</script>
+</body>
+</html>

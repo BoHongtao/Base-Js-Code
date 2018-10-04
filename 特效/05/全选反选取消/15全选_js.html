@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>网页标题</title>
+	<meta name="keywords" content="关键字列表" />
+	<meta name="description" content="网页描述" />
+	<link rel="stylesheet" type="text/css" href="" />
+	<style type="text/css"></style>
+	<script>
+		window.onload = function () {
+			var quanxuan = document.getElementById("quanxuan");
+			var fanxuan = document.getElementById("fanxuan");
+			var quxiao = document.getElementById("quxiao");
+			var checkbox = document.getElementsByName("phone");
+			var len = checkbox.length;
+			//全部为真
+			quanxuan.onclick = function () {
+				for( var i = 0 ; i < len ; ++i)
+				    checkbox[i].checked = true;
+            }
+            //取反
+            fanxuan.onclick = function () {
+                for( var i = 0 ; i < len ; ++i)
+                    checkbox[i].checked = !checkbox[i].checked;
+            }
+            //全部为假
+            quxiao.onclick = function () {
+                for( var i = 0 ; i < len ; ++i)
+                    checkbox[i].checked = false;
+            }
+        }
+ 	</script>
+</head>
+<body>
+	<table border='1' width='400' align='center' style='border-collapse:collapse;'>
+		<tr>
+			<th>序号</th>
+			<th>标题</th>
+			<th>发布时间</th>
+			<th>删除</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>小米8s</td>
+			<td>2024-3-20</td>
+			<td><input type='checkbox' name='phone'/></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>苹果10s</td>
+			<td>2022-9-20</td>
+			<td><input type='checkbox' name='phone'/></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>三星9s</td>
+			<td>2019-3-20</td>
+			<td><input type='checkbox' name='phone'/></td>
+		</tr>
+		<tr>
+			<td colspan='4' align='right'>
+			<input type='button' value='全选' id='quanxuan' />
+			<input type='button' value='取消' id='quxiao' />
+			<input type='button' value='反选' id='fanxuan' />
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

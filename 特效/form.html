@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>用户名</td>
+            <td><input type="text" name="username" id="username" value=""></td>
+            <td><span id="userInformattion"></span></td>
+        </tr>
+        <tr>
+            <td><button onclick="check()">提交</button></td>
+        </tr>
+    </table>
+<script>
+    var username = document.getElementById('username');
+    var span1 = document.getElementById('userInformattion');
+ function check() {
+     var a = ['!','#','@','%','！'];
+     for(var i = 0 ; i < a.length ; ++i){
+         for( var j = 0 ; j< username.value.length ; ++j){
+             if(username.value[j] == a[i]){
+                 span1.innerHTML = "有特殊字符"+a[i];
+                 return 0;
+             }
+         }
+     }
+     if(username.value.length < 3 || username.value.length >6){
+         span1.innerHTML = "长度错误";
+         return 0;
+     }
+     span1.innerHTML = "正确";
+     return 1;
+ }
+</script>
+</body>
+</html>

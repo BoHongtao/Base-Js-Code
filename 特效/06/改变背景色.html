@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script>
+    window.onload = function () {
+        var inputsObj = document.getElementsByTagName("input");
+        var input_len = inputsObj.length;
+        for(var i = 0 ; i < input_len ;++i){
+            inputsObj[i].onmousemove = function () {
+                var red = document.getElementById("red").value;
+                var green = document.getElementById("green").value;
+                var blue = document.getElementById("blue").value;
+                document.body.style.backgroundColor = "rgb("+red+","+blue+","+green+")";
+                document.getElementById("res_red").innerHTML = red;
+                document.getElementById("res_green").innerHTML = green;
+                document.getElementById("res_blue").innerHTML = blue;
+            }
+        }
+    }
+
+
+</script>
+<body>
+<input type="range" min="0" max="255" id="red" value="255"><span id="res_red"></span><br/>
+<input type="range" min="0" max="255" id="green" value="255"><span id="res_green"></span><br/>
+<input type="range" min="0" max="255" id="blue" value="255"><span id="res_blue"></span><br/>
+</body>
+</html>

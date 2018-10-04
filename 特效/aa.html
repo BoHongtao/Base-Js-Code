@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	//课堂实例(获取文件名)
+
+var filename="ab.cd.jpg";
+//(获取文件名)
+function getName(name){
+	var len = name.length;
+	for(var i = len-1 ; i >= 0;--i){
+			if(name[i]=='.'){
+				//找到.的位置,就是i
+				for(var j = 0 ; j < i; ++j){
+					document.write(name[j]);
+				}
+				return ture;
+			}
+	}
+}
+getName(filename);
+
+</script>
+</body>
+</html>

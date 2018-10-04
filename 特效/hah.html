@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>test</title>
+</head>
+<body>
+<script type="text/javascript">
+// function getNum(){
+// 	var count = 0;
+// 	var sum = 0;
+// 	var arr = new Array();
+// 	for(var i = 1 ; i <= 100 ; ++i){
+// 		if(i%3==0 && i%5==0 && i%2==1){
+// 			sum+=i;
+// 			arr[count]=i;
+// 			count++;
+// 		}
+// 	}
+// 	document.write('<hr>');
+// 	document.write("sum is "+sum+'<br>');
+// 	document.write("ave is "+sum/count+'<br>');
+// 	document.write("max is "+arr[count-1]+'<br>');
+// 	document.write("min is "+arr[0]+'<br>');
+// 	//返回找到的数，存在数组中了
+// 	return arr;
+// }
+// document.write("符合的数："+getNum());
+//水仙花数
+// a,b,c代表百十个位153
+
+ // for(var i = 100; i < 1000 ; ++i){
+	// var a = parseInt(i/100);		//获取百位
+	// var b = parseInt((i%100)/10);   //获取十位
+	// var c = i%10;
+	// sum = a*a*a+b*b*b+c*c*c;
+	// if(sum==i){
+	// 	document.write(i+'<br>');
+	// }
+ // }
+ function getRandom(min ,max){
+ 	var arr = [];
+ 	var flag = 0;
+ 	while(flag < 5){
+ 		var num = Math.floor(Math.random()*(max-min)+min);
+ 		if(check(arr,num)){
+ 			arr[flag] = num;
+ 			flag++;
+ 		}
+ 	}
+  	return arr;
+}
+ function check(arr,random){
+ 	for(var i = 0 ; i < arr.length ;++i){
+ 		if(arr[i] == random){
+ 			return false;
+ 		}
+ 	}
+ 	return true;
+ }
+var res = getRandom(10,20);
+console.log(res);
+</script>
+</body>
+</html>

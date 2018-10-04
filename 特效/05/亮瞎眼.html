@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        confirm("睁大眼睛,屏幕调亮点！！");
+            setInterval(show,1);
+    }
+    function show() {
+        var a = ['#f00','#0f0','#00f','#fff','#000'];
+        var randm = Math.floor(Math.random()*5);
+        document.body.style.backgroundColor = a[randm];
+    }
+</script>
+
+</body>
+</html>

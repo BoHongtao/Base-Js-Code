@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<form action="#" name="form1" onsubmit="return checkForm()">
+    <table width="600" align="center">
+        <tr>
+            <td>用户名</td>
+            <td>
+                <input type="text" name="username" onfocus="focus_username()" onblur="blur_username()">
+            </td>
+            <td><span id="user_res"></span></td>
+        </tr>
+
+        <tr>
+            <td>密码</td>
+            <td><input type="password" onfocus="focus_pwd()" onblur="blur_pwd()"></td>
+            <td><span id="pwd_res"></span></td>
+        </tr>
+
+        <tr>
+            <td><button>提交</button></td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    var user_span = document.getElementById("user_res");
+    var pwd_span  = document.getElementById("pwd_res");
+    //获得焦点
+    function focus_username() {
+        user_span.innerHTML = "<font color='red'>请输入用户名</font>";
+    }
+    function focus_pwd() {
+        pwd_span.innerHTML = "<font color='red'>请输入密码</font>";
+    }
+    //失去焦点
+    function blur_username() {
+        var user_obj = document.getElementsByName("username")[0];
+        var user_value = user_obj.value;
+        if(user_value.length === 0){
+            user_span.innerHTML = "<font color='red'>没有输入用户名</font>";
+            return false;
+        }else if(user_value.length > 18 || user_value.length < 5){
+            user_span.innerHTML = "<font color='red'>用户名长度必须再5~18之间</font>";
+            return false;
+        }else if(!check(user_value)){
+            user_span.innerHTML = "<font color='red'>用户名含有特殊符号</font>";
+            return false;
+        }else {
+            user_span.innerHTML = "<font color='blue'>符合要求</font>";
+            return true;
+        }
+    }
+    function check(name){
+        var a = ['!','@','#','$','%','*','&'];
+        len = a.length;
+        for(var i = 0; i < len;++i){
+            for(var j= 0 ; j<name.length; ++j)
+                if(name[j]==a[i]){
+                    return false;
+                }
+        }
+        return true;
+    }
+    function blur_pwd(){
+        var pwd_obj = document.getElementsByName("username")[0];
+        var pwd_value = pwd_obj.value;
+        console.log(pwd_value.length);
+        if(pwd_value.length == 0){
+            pwd_span.innerHTML = "<font color='red'>密码不能为空</font>";
+            return false;
+        }else if(pwd_value.length<4 ||pwd_value.length >6 ){
+            pwd_span.innerHTML = "<font color='red'>密码长度(4,6)</font>";
+            return false;
+        }else if(!isNaN(pwd_value)){
+            pwd_span.innerHTML = "<font color='red'>不能是纯数字</font>";
+            return false;
+        }else{
+            pwd_span.innerHTML = "<font color='blue'>符合要求</font>";
+            return true;
+        }
+
+    }
+    function checkForm() {
+        var user_flag = blur_username();
+        var pass_flag = blur_pwd();
+        if(user_flag && pass_flag){
+            alert('通过');
+            return true;
+        }else{
+            alert('不通过');
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

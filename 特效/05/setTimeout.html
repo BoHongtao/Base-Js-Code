@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>setTimeout</title>
+</head>
+<br>
+<script type="text/javascript">
+//var timer;
+//function winalerthello(){
+//		alert("hello");
+//		timer = setTimeout("winalerthello()",2000);
+//}
+//function winalertstop(){
+//		clearTimeout(timer);
+//}
+	var  timer;
+	var time=1;
+	function start() {
+		var inputObj = document.getElementById('result');
+		inputObj.value = "运行了"+time+"秒";
+		timer = window.setTimeout('start()',1000);
+		time++;
+    }
+    function stop() {
+		clearTimeout(timer);
+    }
+</script>
+<!--<button onclick="winalerthello()">开始</button>-->
+<!--<button onclick="winalertstop()">结束</button>-->
+<input id="result" type="button" value="运行了0秒"></br>
+<input type="button" value="开始" onclick="start()"></br>
+<input type="button" value="结束" onclick="stop()"></br>
+
+</body>
+</html>

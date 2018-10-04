@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            display: inline-block;
+            background-color: #4cae4c;
+            width:20px;
+            height: 20px;
+        }
+        .b{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<img src="img/1.jpg" id="img" onmousemove="stop()" onmouseout="restart()">
+<ul id="ul">
+    <li class="b" onmousemove="stop(1)" onmouseout="restart()">1</li>
+    <li onmousemove="stop(2)" onmouseout="restart()">2</li>
+    <li onmousemove="stop(3)" onmouseout="restart()">3</li>
+    <li onmousemove="stop(4)" onmouseout="restart()">4</li>
+</ul>。
+<script>
+    var timer;
+    var imgobj;
+    var i = 2;
+    var ul,li,len;
+    window.onload = function () {
+        imgobj = document.getElementById("img");
+        var ul = document.getElementById("ul");
+        li = ul.children;
+        len = li.length;
+        timer = setInterval("show()",10);
+    }
+    function show() {
+        for(var n = 0 ; n < len ;++n){
+            li[n].className = "";
+        }
+        li[i-1].className = "b";
+        imgobj.src = "img/"+i+".jpg";
+        i++;
+        if(i==5){
+            i=1;
+        }
+    }
+    function stop(num) {
+        if(num) {
+            i = num;
+            show();
+        }
+        clearInterval(timer);
+    }
+    function restart() {
+        timer = setInterval("show()",1000);
+    }
+</script>
+</body>
+</html>

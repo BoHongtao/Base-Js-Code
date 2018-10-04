@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+function isPic(name){
+	var image = [".jpg",".gif"];
+	var str = '.';
+	var position = name.lastIndexOf(str);
+	//document.write(position);
+	var res = name.substring(position);
+	for(var i = 0 ; i < image.length; ++i){
+		if(image[i]==res){
+			return true;
+		}
+	}
+	return false;
+}
+var file = "a.gif";
+var res = isPic(file);
+if(res){
+	document.write("是的");
+}else{
+	document.write("不是");
+}
+
+
+
+</script>
+
+</body>
+</html>

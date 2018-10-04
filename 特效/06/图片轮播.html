@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li{
+            display:inline-block;
+            list-style: none;
+            height: 20px;
+            width:20px;
+            background-color: forestgreen;
+        }
+        .a{
+            background-color: red;
+        }
+    </style>
+    <title>Title</title>
+    <script>
+        var timer;
+        var i = 2;
+        var imgobj;
+        var ul;
+        var li;
+        var len;
+        window.onload = function () {
+            timer = setInterval("show()",1000);
+            imgobj = document.getElementById("ss_scroll");
+            ul = document.getElementById("ul");
+            li = ul.children;
+            len = li.length;
+        }
+        function show() {
+            for(var n = 0 ; n < len ;++n){
+                li[n].className = "";
+            }
+            li[i-1].className = "a";
+            imgobj.src = "../img/"+i+".jpg";
+            i++;
+            if(i==5){
+                i=1;
+            }
+        }
+        function stop(number) {
+            if(number){
+                i = number;
+                //调用show
+                show();
+            }
+            clearInterval(timer);
+        }
+        function restart() {
+            timer = setInterval("show()",1000);
+        }
+    </script>
+</head>
+<body>
+<img src="../img/1.jpg" id="ss_scroll" onmouseover="stop()" onmouseout="restart()">
+<ul id="ul">
+    <li onmouseover="stop(1)" onmouseout="restart(1)" class="a">1</li>
+    <li onmouseover="stop(2)" onmouseout="restart(2)">2</li>
+    <li onmouseover="stop(3)" onmouseout="restart(3)">3</li>
+    <li onmouseover="stop(4)" onmouseout="restart(4)">4</li>
+</ul>
+</body>
+</html>

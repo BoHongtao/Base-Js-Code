@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function start() {
+        timer=window.setInterval(show,50);
+    }
+    function stop() {
+        window.clearTimeout(timer);
+    }
+    var a = ['#FF0000','#ADFF2F','#000000','#0000FF','#FFFF00'];
+    function show() {
+        var num = Math.floor(Math.random()*(5-0+1)+0)
+        document.body.style.backgroundColor = a[num];
+    }
+
+
+</script>
+<button onclick="start()">开始</button>
+<button onclick="stop()">结束</button>
+
+</body>
+</html>
