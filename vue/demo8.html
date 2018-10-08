@@ -1,0 +1,35 @@
+<!--样式绑定-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .active {
+        width: 100px;
+        height: 100px;
+        background: green;
+    }
+    .danger{
+        background: red;
+    }
+</style>
+<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+<script type="text/javascript" src="./vue.js"></script>
+<body>
+<div id="app">
+    <div v-bind:class="[activeClass, errorClass]"></div>
+</div>
+</body>
+</html>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            activeClass: 'active',
+            errorClass:'danger'
+        }
+    })
+</script>

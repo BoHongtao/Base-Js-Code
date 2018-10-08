@@ -1,0 +1,33 @@
+<!--做模板引擎，指定变量到dom节点中,循环-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<!-- 开发环境版本，包含了用帮助的命令行警告 -->
+<script type="text/javascript" src="./vue.js"></script>
+<body>
+<div id="app">
+   <ol>
+       <li v-for = "todo in todos">
+           {{ todo.text }}
+       </li>
+   </ol>
+</div>
+</body>
+</html>
+<script>
+window.onload = function(){
+    var app = new Vue({
+        el: '#app',
+        data:{
+            todos:[
+                { text: 'learn js'},
+                { text: 'learn php'},
+                { text: 'learn python'}
+            ]
+        }
+    })
+}
+</script>
