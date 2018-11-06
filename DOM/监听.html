@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ .div{
+	width:200px;
+ 	height:200px;
+ 	background:red;
+ }
+</style>
+</head>
+<body>
+<div class='div' id='div'></div>
+
+</body>
+</html>
+
+
+<script>
+//返回dom对象
+function DOM(id){
+	return document.getElementById(id);
+}
+function fn1(){
+	alert('hhaha');
+}
+window.onload = function(){
+//	DOM('div').onclick = function(){
+//		alert('hello');
+//	}
+	DOM('div').addEventListener('click',function(){
+		alert('hello');
+	});
+	DOM('div').addEventListener('click',function(){
+		alert('word');
+	});
+} 
+</script>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body{
+     margin: 0;
+     padding: 0;
+}
+
+#bird{
+	width:60px;
+	height:60px;
+	line-height:200px;
+	text-align:center;
+	background:green;
+	position:absolute;
+	left:100px;
+  	top:200px;
+}
+#sky{
+     width: 800px;
+     height: 600px;
+     border: 1px solid #000;
+     background: url(image/sky.png);
+     overflow: hidden;
+     position: relative;
+}
+
+</style>
+</head>
+<body>
+<div id='sky'>
+	<div id='bird'></div>
+</div>
+</body>
+</html>
+
+<script>
+	//获取控件
+	var bird = document.getElementById('bird');
+	var sky = document.getElementById('sky');
+	var skystep = 0;
+	//保存鸟的位置
+	var x=130,y=370;
+	//移动背景
+    setInterval(function () {
+    skystep = skystep - 5;
+    sky.style.backgroundPositionX = skystep + "px";
+}, 50);
+	//碰撞检测
+
+	//键盘监听事件
+	document.onkeydown = function(event){
+		var code;
+		if(window.event){
+			code = window.event.keyCode;
+		}else{
+			code = event.keyCode;
+		}
+		//右
+		if(code == 102){
+			var left = bird.offsetLeft;
+			var step = 5;
+			x=x+5;
+			if(x>770){
+				alert('死亡');
+			}else{
+				left = step + left ;
+				bird.style.left = left+'px';
+			}
+		}
+		//左
+		if(code == 100){
+			var left = bird.offsetLeft;
+			var step = 5;
+			x=x-5;
+			if(x<30){
+				alert('死亡');
+			}else{
+				left =left - step;
+				bird.style.left = left+'px';
+			}
+			
+		}
+		//上
+		if(code == 104){
+			var top = bird.offsetTop;
+			var step = 10;
+			y=y+5;
+			//alert(y);
+			if(y>470){
+				alert('死亡');
+			}else{
+				top = top - step ;
+				bird.style.top = top+'px';
+			}
+			
+		}
+		//下
+		if(code == 98){
+			var top = bird.offsetTop;
+			var step = 10;
+			y=y-5;
+			//alert(y);
+			if(y<200){
+				alert('死亡');
+			}else{
+				top = step + top ;
+				bird.style.top = top+'px';
+			}
+		}
+		//吃
+		if(code = 101){
+			//已知鸟的位置
+			
+		}
+		
+}
+
+</script>
