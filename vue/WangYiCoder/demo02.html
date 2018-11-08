@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+        #canvas{
+            width: 600px;
+            padding: 200px 20px;
+            text-align: center;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>演示事件绑定Event</h1>
+    <div id="vue-app">
+        <p>我的年龄是{{ age }}岁</p>
+        <button v-on:click="age++">加一岁</button>
+        <button v-on:click="add">绑定函数加一岁</button>
+
+        <button v-on:dblclick="age--">减一岁</button>
+        <button v-on:dblclick="sub()">绑定函数减一岁</button>
+
+        <div id="canvas" v-on:mousemove="updateXY">
+            {{x}},{{y}}
+        </div>
+    </div>
+    <script src="app02.js"></script>
+</body>
+</html>
+<!--关于绑定事件函数带不带括号，如果要传参数就要加括号-->
+<!--dblclick双击事件 -->
+<!--click单击事件 -->

@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<script src="vue.js"></script>
+<body>
+    <h1>主要演示了页面绑定:数据，属性，自定义标签</h1>
+    <div id="vue-app">
+        <p>{{ name }}</p>
+        <h1>{{ greet() }}</h1>
+        <h2>{{ say("我是一个Coder") }}</h2>
+        <!--v-bind用于属性绑定-->
+        <a v-bind:href="url">属性绑定</a>
+        <p v-html="dom"></p>
+
+    </div>
+    <script src="app01.js"></script>
+</body>
+</html>
